@@ -1,0 +1,16 @@
+[tool.poetry]
+name = "wiibin"
+version = "0.1.0"
+description = ""
+authors= ["Bryan Beckman"]
+
+[tool.poetry.dependencies]
+python = "^3.7"
+numpy = "^1.19.0"
+pandas = "^1.0.5"
+scikit-learn = "0.22.1"
+matplotlib = "^3.2.2"
+
+[tool.poetry.dev-dependencies]
+setuptools = "*"
+

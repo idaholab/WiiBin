@@ -6,7 +6,7 @@ Copyright 2020 Battelle Energy Alliance, LLC, ALL RIGHTS RESERVED
 
 ## Note
 
-WiiBin was developed and tested on a Linux system using Python 3.7.7, yet should be platform agnostic and should also work with MacOS and Windows machines. This has not been thoroughly tested.
+WiiBin was developed and tested on a Linux based system using Python 3.7.7, yet should be platform agnostic and should also work with MacOS and Windows machines, though this has not been thoroughly tested.
 
 ## Installation
 
@@ -21,20 +21,11 @@ To check that his is correctly functioning run:
 python --version
 ```
 
-If the version is incorrect, fix it.  To manage python environments, Pyenv is recommended: https://github.com/pyenv/pyenv
-
 ### Download Zip
 
-Download WiiBin.zip
+Download WiiBin.zip from GitHub Repository
 
 Extract the contents of WiiBin.zip into a folder of your choice. 
-
-### Download Via GIT
-
-```bash
-git http.sslVerify=false clone --recurse-submodules https://134.20.14.19/fit/wiibin.git
-cd wiibin
-```
 
 ### Dependencies Using Poetry
 
@@ -62,20 +53,18 @@ curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poet
 - matplotlib (3.1.2) (if showPlots variable is true, a graph will be displayed)
 
  Notes: 
- - The Binwalk repository will be accessible if wiibin was cloned from git with the above command, otherwise it will need to be installed from source following instructions on Github: https://github.com/ReFirmLabs/binwalk
+ - The binwalk utility is required and and accessible through your PATH using the `binwalk` command.  The most reliable way to install binwalk is to run `sudo apt install binwalk`
  - The Python tkinter package comes default on MacOS and Windows Python binaries. If you're on a Debian distribution, run `sudo apt install python3-tk` to install.
 
-Issuing the following commands from WiiBin root directory will install the dependencies :
+Issuing the following commands from WiiBin root directory will install the required dependencies and launch WiiBin for the first time: 
 
 ```bash
 poetry shell
 poetry install
-cd binwalk
-sudo python setup.py install
-cd ../
+sudo apt install binwalk
+sudo apt install python3-tk
+python3 WiiBin.py
 ```
-
-
 
 ## Usage
 

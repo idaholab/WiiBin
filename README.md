@@ -8,6 +8,11 @@ Copyright 2020 Battelle Energy Alliance, LLC, ALL RIGHTS RESERVED
 
 WiiBin was developed and tested on a Linux based system using Python 3.7.7, yet should be platform agnostic and should also work with MacOS and Windows machines, though this has not been thoroughly tested.
 
+## Overview
+WiiBin was presented at BSides Idaho (https://www.bsidesidaho.org/) on October 23, 2020. A video recording     of the presentation is found below.
+
+[![WiiBin Video](/images/bsides.png)](https://www.youtube.com/watch?v=ac3m1NuYd88)
+
 ## Installation
 
 ### Python

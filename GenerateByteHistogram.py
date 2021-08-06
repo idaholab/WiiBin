@@ -82,7 +82,7 @@ for i in binaries:
     try:
         blockSize = int(sys.argv[7])
     except:
-        blockSize = 512
+        blockSize = 256
         
     try:
         requiredVotes = int(sys.argv[8])
@@ -156,7 +156,6 @@ if sys.argv[1] in ['a','d']:
         results = open("Output/Results.txt","w")
         
         outString = str(y_pred1[0]) + '\t' + str(round(probabilityPercent1,2)) + '%\t\tNeuralNetwork\n'\
-                  + '------------------------------------------\n'\
                   + str(y_pred2[0]) + '\t' + str(round(probabilityPercent2,2)) + '%\t\tAdaBoost\n'\
                   + str(y_pred3[0]) + '\t' + str(round(probabilityPercent3,2)) + '%\t\tRandomForest\n'\
                   + str(y_pred4[0]) + '\t' + str(round(probabilityPercent4,2)) + '%\t\tkNN\n'\

@@ -12,8 +12,9 @@ writeVectorToFile = True
 plotGraphs = False
 showScreenOutput = False
 CRED = '\033[91m'
+CEND = '\033[0m'
 
-knownArchitectures = ['amd64','mips','mipsel','powerpc','i386','armel','armhf','ppc64el','java','python27','python35']
+knownArchitectures = ['amd64','mips','mipsel','powerpc','i386','armel','armhf','ppc64el','java','python27','python35','gcc','clang','tcc','AVR','dotNet']
 
 bytecount = 0
 processedByteCount = 0
@@ -47,7 +48,7 @@ except:
 try:
     blockSize = int(sys.argv[7])
 except:
-    blockSize = 512
+    blockSize = 256
 
 try:
     outPath = sys.argv[3]
@@ -85,6 +86,7 @@ print('Processing ' + fileSelected.split(os.sep)[-1])
 #count = 0
 
 while bytes:
+    print((bytecount / bytesInFile) * 100, end='\r')
     if int(length) > bytecount:
         #Format bytes
         hex2bytes = binascii.hexlify(bytearray(bytes))
@@ -181,7 +183,8 @@ if writeVectorToFile == True:
         else:
             raise
     except:
-        outputFile.write('mips' + ',' + str(histogram)[1:-1] + '\n')
+        #outputFile.write('mips' + ',' + str(histogram)[1:-1] + '\n')
+        outputFile.write(sys.argv[2] + ',' + str(histogram)[1:-1] + '\n')
         #outputFile.write('?' + ',' + str(histogram)[1:-1] + '\n')
     outputFile.close()
     

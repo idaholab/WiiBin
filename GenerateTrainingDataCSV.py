@@ -13,7 +13,7 @@ except:
    print('Argument Error')
    sys.exit()
 
-os.system('python GenerateByteHistogram.py n ' + inputDir + ' ' + outputDir + ' 0 100000000000000000000 ' + entropyFilter + ' 512')
+os.system('python3 GenerateByteHistogram.py n ' + inputDir + ' ' + outputDir + ' 0 100000000000000000000 ' + entropyFilter + ' 512')
 
 print('Done')
 print('Training Data is csv format is located ' + outputDir)

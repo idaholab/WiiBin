@@ -29,8 +29,9 @@ x_train = trainingData[['0x00','0x01','0x02','0x03','0x04','0x05','0x06','0x07',
 y_train = trainingData['Arch'] #Output
 
 #Run Test
-model1 = MLPClassifier(solver='lbfgs', alpha=1e-5, hidden_layer_sizes=(15,), random_state=1, max_iter=4000)  
-model2 = AdaBoostClassifier(n_estimators=100, random_state=1)
+model1 = MLPClassifier(solver='adam', alpha=1e-4, hidden_layer_sizes=(100,), max_iter=4000)  
+#model1 = MLPClassifier(solver='lbfgs', alpha=1e-5, hidden_layer_sizes=(15,), random_state=1, max_iter=4000)  
+model2 = AdaBoostClassifier()
 model3 = RandomForestClassifier(n_estimators=100, max_depth=2, random_state=1)
 model4 = KNeighborsClassifier(n_neighbors=3)
 model5 = DecisionTreeClassifier(random_state=1)
@@ -39,13 +40,21 @@ model7 = GaussianNB()
 model8 = LogisticRegression(random_state=1, solver='lbfgs',multi_class='multinomial', max_iter=200)
 
 model1.fit(x_train, y_train)
+print(model1.score(x_train, y_train))
 model2.fit(x_train, y_train)
+print(model2.score(x_train, y_train))
 model3.fit(x_train, y_train)
+print(model3.score(x_train, y_train))
 model4.fit(x_train, y_train)
+print(model4.score(x_train, y_train))
 model5.fit(x_train, y_train)
+print(model5.score(x_train, y_train))
 model6.fit(x_train, y_train)
+print(model6.score(x_train, y_train))
 model7.fit(x_train, y_train)
+print(model7.score(x_train, y_train))
 model8.fit(x_train, y_train)
+print(model8.score(x_train, y_train))
 
 pickle.dump(model1, open('PickledSKLearnModels/NeuralNetwork.sav', 'wb'))
 pickle.dump(model2, open('PickledSKLearnModels/AdaBoost.sav', 'wb'))

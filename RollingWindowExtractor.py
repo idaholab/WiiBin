@@ -1,6 +1,6 @@
 #Copyright 2020 Battelle Energy Alliance, LLC, ALL RIGHTS RESERVED.
 
-#python RollingWindowSplitPortionExtractor.py <Input Directory> <Output Directory> <Chunk Size in Bytes>
+#python RollingWindowSplitPortionExtractor.py <Input Directory> <Output Directory> <Chunk Size in Bytes> <Slide Percent>
 
 import subprocess
 import sys
@@ -32,6 +32,12 @@ except:
     print('Argument Error')
     sys.exit()
 
+try:
+    slidePercent = int(sys.argv[4])
+except:
+    print('Argument Error')
+    sys.exit()
+
 print(CGREEN + 'Chunking File into ' + str(chunkSize) + 'byte' + ' Pieces' + CEND)
 
 count = 1
@@ -47,7 +53,7 @@ for i in binaries:
     while currentByte < totalBytes:
         subprocess.call('dd if=' + str(i) + ' of=' + outPath + str(i.split(os.sep)[-1]) + '__bytes-'+ str(chunkSize) +'__offset-'+ str(currentByte).zfill(8) +' skip=' + str(currentByte) + ' count=' + str(chunkSize) + ' iflag=skip_bytes,count_bytes', shell=True)
         
-        currentByte = int(currentByte + chunkSize/2)
+        currentByte = int(currentByte + (chunkSize*(int(slidePercent)/100))) #50% slidePercent   1=0%, 2=50%, 4=75%, 
 
     count = count + 1
 

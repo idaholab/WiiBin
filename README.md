@@ -6,70 +6,85 @@ Copyright 2020 Battelle Energy Alliance, LLC, ALL RIGHTS RESERVED
 
 ## Note
 
-WiiBin was developed and tested on a Linux based system using Python 3.7.7, yet should be platform agnostic and should also work with MacOS and Windows machines, though this has not been thoroughly tested.
+WiiBin was developed and tested on a Linux system using Python 3.6, yet should be platform agnostic and should also work with MacOS and Windows machines. This has not been thoroughly tested.
 
-## Overview
-WiiBin was presented at BSides Idaho (https://www.bsidesidaho.org/) on October 23, 2020. A video recording     of the presentation is found below.
 
-[![WiiBin Video](/images/bsides.png)](https://www.youtube.com/watch?v=ac3m1NuYd88)
 
 ## Installation
 
 ### Python
 
-WiiBin requires the use of Python 3.7.x or Higher. For whatever operating system you are on,
-ensure that Python 3.7.x or Higher is installed and accessible through your PATH.
+WiiBin requires that Python 3.6.x or Higher is installed and accessible through your PATH.
 
-To check that his is correctly functioning run:
-
-```bash
-python --version
-```
+It is recommended to utilize python environments as WiiBin depends on earlier versions of some packages, Pyenv, or Poetry are recommended
 
 ### Download Zip
 
-Download WiiBin.zip from GitHub Repository
+Download and extract the contents of WiiBin.zip into a folder of your choice. 
 
-Extract the contents of WiiBin.zip into a folder of your choice. 
+### Download Via GIT
 
-### Dependencies Using Poetry
-
-#### Installing Poetry
-
-##### Windows Powershell
-
-```Powershell
-(Invoke-WebRequest -Uri https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py -UseBasicParsing).Content | python
+```bash
+git http.sslVerify=false clone --recurse-submodules https://github.com/idaholab/WiiBin.git
+cd wiibin
 ```
 
-##### Linux Bash
+### Dependencies 
+
+#### Installing via Poetry
 
 ```bash
 sudo apt install curl
 curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python
-```
-
-#### Installing Dependencies
-
-- numpy (1.18.5) (for numerical processing)
-- pandas (1.0.4) (for data handling)
-- sklearn (0.22.1) (for machine learning)
-- binwalk (tool for walking a binary tree)
-- matplotlib (3.1.2) (if showPlots variable is true, a graph will be displayed)
-
- Notes: 
- - The binwalk utility is required and and accessible through your PATH using the `binwalk` command.  The most reliable way to install binwalk is to run `sudo apt install binwalk`
- - The Python tkinter package comes default on MacOS and Windows Python binaries. If you're on a Debian distribution, run `sudo apt install python3-tk` to install.
-
-Issuing the following commands from WiiBin root directory will install the required dependencies and launch WiiBin for the first time: 
-
-```bash
 poetry shell
 poetry install
-sudo apt install binwalk
-sudo apt install python3-tk
-python3 WiiBin.py
 ```
+
+#### Installing Dependencies Manually
+
+- numpy (1.18.5) (for numerical processing) 
+
+  ```
+  pip3 install numpy==1.18.5
+  ```
+
+- pandas (1.0.4) (for data handling) 
+
+  ```
+  pip3 install pandas==1.0.4
+  ```
+
+- sklearn (0.22.1) (for machine learning)
+
+  ```
+  pip3 install sklearn==0.22.1
+  ```
+
+- binwalk (tool for walking a binary tree)
+
+  ```
+  sudo apt install binwalk
+  ```
+
+- matplotlib (3.1.2) (if showPlots variable is true, a graph will be displayed)
+
+  ```
+  pip3 install matplotlib==3.1.2
+  ```
+
+- tkinter (graphical user interface) (Comes by default on MacOS and Windows python installs)
+
+  ```
+  sudo apt install python3-tk
+  ```
+
+#### Install via Script (Debian)
+
+```bash
+python3 Install.py
+```
+
+
 
 ## Usage
 
@@ -79,7 +94,7 @@ WiiBin is launched from the command line using the following command:
 python3 WiiBin.py
 ```
 
-Once launch you are greeted with following interface.
+Once launched you are greeted with following interface.
 
 ![WiiBinUI](images/WiiBinUI.PNG)
 
@@ -88,16 +103,17 @@ Click *Select File...* to generate a file open dialog and select the binary of i
 Adjust the default values if desired.
 
 - Entropy Span: The entropy filter to use when generating a byte histogram <Max>:<Min>
-
 - Block Size: The block size in bytes which Binwalk will consider when generating a byte histogram
-
-- Chunk Size: The size in bytes for each portion of the target binary to be split into. 50% overlap is    automatically used. Only used when *Determine Data Offsets* is chosen.
+- Chunk Size: The size in bytes for each portion of the target binary to be split into. 50% overlap is automatically used. Only used when *Determine Offsets* is chosen.
 - Req'd Votes: The number of algorithms that must agree on the input binaries architecture in order for results to be output.
+- Architecture/Compiler: Selects WiiBin mode of operation.
 - Endianess: Displays the calculated endianess of the binary. Note: Endianness field will only be populated when Determine Architecture is used.
+- Slide %: The percentage of the current chunk that overlaps the previous chunk.  The larger the percentage the more accurate the data offset measurement
+- Percent Compressed/Encrypted:  The percentage of the binary that is above the upper entropy threshold.  This data will be ignored in calculations
 
 Note: Clicking on the field labels in the GUI will display similar helps and definitions.
 
-Click *Determine Architecture* or *Determine Data Offsets* to begin processing selected file.
+Click *Determine Type* or *Determine Offsets* to begin processing selected file.
 
 Processing status will be seen in the command line window which originally launched WiiBin.py
 
@@ -105,31 +121,31 @@ Once processing is complete, results will be shown on the WiiBin GUI text field.
 
 
 
-*Determine Architecture* selected and processed:
+*Determine Type* selected and processed:
 
 ![Arch](images/Arch.PNG)
 
-Predicted Architecture for each Algorithm is displayed along with the probability of the prediction.  Note: Previous analysis has showed that the NeuralNetwork Algorithm was the most consistently correct and as such is highlighted in the output as seen above.
+Predicted Type for each Algorithm is displayed along with the probability of the prediction.  Note: Previous analysis has showed that the NeuralNetwork Algorithm was the most consistently correct and as such is by defaults highlighted in the output as seen above.
 
 
 
-*Determine Data Offsets* selected and processed with unanimous agreement required (8 of 8):
+*Determine Offsets* selected and processed with an nearly unanimous agreement (7 of 8) required for display:
 
 ![Offset8of8](images/Offset8of8.PNG)
 
-Byte ranges and architecture predictions are displayed for the subfiles that resulted in unanimous agreement on binary architecture.
+Byte offsets and type predictions are displayed for the subfiles that resulted in the nearly unanimous agreement on binary architecture.
 
 
 
-*Determine Data Offsets* selected and processed with simple majority agreement required (5 of 8):
+*Determine Offsets* selected and processed with simple majority agreement required (5 of 8):
 
 ![Offset5of8](images/Offset5of8.PNG)
 
-Byte ranges and architecture predictions are displayed for the subfiles that resulted in simple majority agreement (5 or more of 8) on binary architecture.
+Byte offsets and type predictions are displayed for the subfiles that resulted in simple majority agreement (5 or more of 8) on binary architecture.
 
 ## Trained Models
 
-Trained models are included (.sav files). These models are trained on sets of known architecture binaries collected from pre-compiled Debian libraries. The trained architectures and number of libraries used to train each model are as follows:
+Trained models are included (.sav files - SciKit-Learn version 0.22.1). These models are trained on sets of known architecture binaries collected from pre-compiled Debian libraries, as well as C source code compiled with known compilers and optimization settings. These binaries are used to train each model are as follows:
 
 - amd64: 546 - Debian 7.11 Libraries
 - armel: 403 - 7.11 Libraries
@@ -139,9 +155,13 @@ Trained models are included (.sav files). These models are trained on sets of kn
 - mispel: 404 - 7.11 Libraries
 - powerpc: 357 - 7.11 Libraries
 - ppc64el: 243 - 8.11 Libraries
+- avr: 63 - Subset of Compiled Source from https://github.com/TheAlgorithms/C using avr-gcc
 - java: 400 - Java 8 Bytecode
 - python27: 207 - Python 2.7 Bytecode
 - python35: 170 - Python 3.5 Bytecode
+- dotnet5: 510 - .Net Framework Binaries
+- gcc: 1320 - Subset of Compiled Source from https://github.com/TheAlgorithms/C
+- clang: 792 - Subset of Compiled Source from https://github.com/TheAlgorithms/C
 
 **File structure:**
 
@@ -162,8 +182,77 @@ Trained models are included (.sav files). These models are trained on sets of kn
 - SingleByteHistogram.py  (Python script to calculate byte histogram of a binary file)
 - TrainAndPickleSKLearnModels.py  (Python script which takes in a training data csv and outputs saved sklearn models)
 - GenerateTrainingDataCSV.py  (Python script which takes in directory of filename labeled binaries generates training data csvs)
-  - Filename Format:  description_architecture_library.version     
+  - Filename Format:  description_type_details    
   - Filename Format:  debian-7.11.0_mipsel_libXRes.so.1.0.0
+  - Filename Format:  helloworld_clang_O2
+- Install.py (Install script for easier installation of Debian based systems)
 - WiiBin.py  (Main WiiBin program with tkinter GUI)
+- WiiBin Diagrams.pptx  (PowerPoint to explain some of the WiiBin details and design decisions)
 - images (Screenshots to support Readme.md)
 - Readme.md (This file)
+
+
+
+## Change Log
+
+##### Version 1.7
+
+- Added warning popup if more than 33% compressed or encrypted
+
+##### Version 1.6
+
+- Added simple progress percentage for Detect Arch
+- Added Check for ZeroByte files
+
+##### Version 1.5
+
+- Added Calculation of the percentage of the selected file that is above the upper entropy threshold (compressed or encrypted)
+
+##### Version 1.4
+
+- Added support for AVR architectures
+- Retrained from fewer dotNet binaries
+- Split architecture and bytecode detection
+
+##### Version 1.3
+
+- Added Mode Selection (Architecture/Compiler)
+- Added Additional Startup Notes
+- Wording modifications
+
+##### Version 1.2
+
+- Buffered File with 0x00's (Appended and Prepended) to aide in sliding window usage
+- Offset measured from center of sliding window (Chunk Size)
+- Adjustable slide % (Set the amount of overlap that is included with the sliding windows: 10%=90% Overlap)
+- Added .Net Bytecode Detection
+- Added Startup Notes
+- Additional Error checking
+
+##### Version 1.1
+
+- Added Java Bytecode Detection
+- Added Python Bytecode Detection
+- Added tooltip helps
+- Additional Error checking
+
+##### Version 1.0
+
+- Original Release
+
+
+
+## Security Review
+
+Bandit security code analysis results: https://bandit.readthedocs.io/en/latest/
+
+- B110: Try, Except, Pass detected.
+- B301: Pickle and modules that wrap it can be unsafe when used to deserialize untrusted data, possible security issue.
+- B403: Consider possible security implications associated with pickle module.
+- B404: Consider possible security implications associated with subprocess module.
+- B602: subprocess call with shell=True identified, security issue.
+- B603: subprocess call - check for execution of untrusted input.
+- B605: Starting a process with a shell, possible injection detected, security issue.
+- B607: Starting a process with a partial executable path
+
+With proper code rewrite most if not all of these security issues can be resolved.  These are not considered critical as WiiBin is considered proof of concept code.

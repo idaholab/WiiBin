@@ -386,7 +386,7 @@ scrollb = Scrollbar(root, command=resultsBox.yview)
 scrollb.place(x=630, y=350)
 resultsBox['yscrollcommand'] = scrollb.set
 
-resultsBox.insert(END,'Welcome to WiiBin 1.6\n----------------------\n\nNotes:\n\nThe smaller the Slide (%) and Chunk Size, the more accurate the detection and longer the runtime.\n\nToo small a Chuck Size will cause make ML difficult and less accurate.\n\nThe minimum detectable code segment size is limited to half of the selected Chunk Size.\n\nTo detect smaller code segments the Chunk Size most be reduced.')
+resultsBox.insert(END,'Welcome to WiiBin 1.7\n----------------------\n\nNotes:\n\nThe smaller the Slide (%) and Chunk Size, the more accurate the detection and longer the runtime.\n\nToo small a Chuck Size will cause make ML difficult and less accurate.\n\nThe minimum detectable code segment size is limited to half of the selected Chunk Size.\n\nTo detect smaller code segments the Chunk Size most be reduced.')
 
 clearDirectories()
 

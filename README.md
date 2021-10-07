@@ -194,6 +194,10 @@ Trained models are included (.sav files - SciKit-Learn version 0.22.1). These mo
 
 
 ## Change Log
+  
+##### Version 1.7.1
+
+- Fixed minor entropy percentage color bug
 
 ##### Version 1.7
 

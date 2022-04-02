@@ -187,6 +187,7 @@ Trained models are included (.sav files - SciKit-Learn version 0.22.1). These mo
   - Filename Format:  helloworld_clang_O2
 - Install.py (Install script for easier installation of Debian based systems)
 - WiiBin.py  (Main WiiBin program with tkinter GUI)
+- WiiBinCLI.py  (Command Line interface to WiiBin)
 - WiiBin Diagrams.pptx  (PowerPoint to explain some of the WiiBin details and design decisions)
 - images (Screenshots to support Readme.md)
 - Readme.md (This file)
@@ -194,14 +195,14 @@ Trained models are included (.sav files - SciKit-Learn version 0.22.1). These mo
 
 
 ## Change Log
-  
+
+##### Version 1.8
+
+- Added Command Line interface to WiiBin
+
 ##### Version 1.7.1
 
-- Fixed minor entropy percentage color bug
-
-##### Version 1.7
-
-- Added warning popup if more than 33% compressed or encrypted
+- Minor entropy percentage coloring bug fixed
 
 ##### Version 1.6
 

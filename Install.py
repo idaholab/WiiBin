@@ -33,8 +33,9 @@ binwalkResults = os.system("sudo apt install binwalk")
 print('binwalk Installed')
 
 #check sklearn version
+cythonResults = os.system("pip3 install Cython")
 scikitResults = os.system("pip3 install scikit-learn==0.22.1")
-print('scikit Installed')
+print('scikit and Cython Installed')
 
 #check numpy
 numpyResults = os.system("pip3 install numpy")

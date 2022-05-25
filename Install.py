@@ -20,6 +20,10 @@ input()
 pip3Results = os.system("sudo apt install python3-pip")
 print('pip3 Installed')
 
+#check wheel
+wheelResults = os.system("pip3 install wheel")
+print('wheel Installed')
+
 #check tkinter
 tkinterResults = os.system("sudo apt install python3-tk")
 print('tkinter Installed')
@@ -33,15 +37,15 @@ scikitResults = os.system("pip3 install scikit-learn==0.22.1")
 print('scikit Installed')
 
 #check numpy
-numpyResults = os.system("pip3 install numpy==1.18.5")
+numpyResults = os.system("pip3 install numpy")
 print('numpy Installed')
 
 #check pandas
-pandasResults = os.system("pip3 install pandas==1.0.4")
+pandasResults = os.system("pip3 install pandas")
 print('pandas Installed')
 
 #check matplotlib
-matplotlibResults = os.system("pip3 install matplotlib==3.1.2")
+matplotlibResults = os.system("pip3 install matplotlib")
 print('matplotlib Installed')
 
 print()

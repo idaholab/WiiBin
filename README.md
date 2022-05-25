@@ -31,27 +31,18 @@ cd wiibin
 
 ### Dependencies 
 
-#### Installing via Poetry
-
-```bash
-sudo apt install curl
-curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python
-poetry shell
-poetry install
-```
-
 #### Installing Dependencies Manually
 
-- numpy (1.18.5) (for numerical processing) 
+- numpy (>=1.18.5) (for numerical processing) 
 
   ```
-  pip3 install numpy==1.18.5
+  pip3 install numpy
   ```
 
-- pandas (1.0.4) (for data handling) 
+- pandas (>=1.0.4) (for data handling) 
 
   ```
-  pip3 install pandas==1.0.4
+  pip3 install pandas
   ```
 
 - sklearn (0.22.1) (for machine learning)
@@ -66,10 +57,10 @@ poetry install
   sudo apt install binwalk
   ```
 
-- matplotlib (3.1.2) (if showPlots variable is true, a graph will be displayed)
+- matplotlib (>=3.1.2) (if showPlots variable is true, a graph will be displayed)
 
   ```
-  pip3 install matplotlib==3.1.2
+  pip3 install matplotlib
   ```
 
 - tkinter (graphical user interface) (Comes by default on MacOS and Windows python installs)
@@ -195,6 +186,10 @@ Trained models are included (.sav files - SciKit-Learn version 0.22.1). These mo
 
 
 ## Change Log
+
+##### Version 1.8.1
+
+- Minor changes to install script
 
 ##### Version 1.8
 

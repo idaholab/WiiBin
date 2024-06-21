@@ -21,7 +21,7 @@ pip3Results = os.system("sudo apt install python3-pip")
 print('pip3 Installed')
 
 #check wheel
-wheelResults = os.system("pip3 install wheel")
+wheelResults = os.system("pip3 install wheel --trusted-host files.pythonhosted.org --trusted-host pypi.org")
 print('wheel Installed')
 
 #check tkinter
@@ -33,20 +33,20 @@ binwalkResults = os.system("sudo apt install binwalk")
 print('binwalk Installed')
 
 #check sklearn version
-cythonResults = os.system("pip3 install Cython")
-scikitResults = os.system("pip3 install scikit-learn==0.22.1")
+cythonResults = os.system("pip3 install Cython --trusted-host files.pythonhosted.org --trusted-host pypi.org")
+scikitResults = os.system("pip3 install scikit-learn==0.22.1 --trusted-host files.pythonhosted.org --trusted-host pypi.org")
 print('scikit and Cython Installed')
 
 #check numpy
-numpyResults = os.system("pip3 install numpy")
+numpyResults = os.system("pip3 install numpy==1.22.3 --trusted-host files.pythonhosted.org --trusted-host pypi.org")
 print('numpy Installed')
 
 #check pandas
-pandasResults = os.system("pip3 install pandas")
+pandasResults = os.system("pip3 install pandas --trusted-host files.pythonhosted.org --trusted-host pypi.org")
 print('pandas Installed')
 
 #check matplotlib
-matplotlibResults = os.system("pip3 install matplotlib")
+matplotlibResults = os.system("pip3 install matplotlib --trusted-host files.pythonhosted.org --trusted-host pypi.org")
 print('matplotlib Installed')
 
 print()

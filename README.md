@@ -33,10 +33,10 @@ cd wiibin
 
 #### Installing Dependencies Manually
 
-- numpy (>=1.18.5) (for numerical processing) 
+- numpy (1.22.3) (for numerical processing) 
 
   ```
-  pip3 install numpy
+  pip3 install numpy==1.22.3
   ```
 
 - pandas (>=1.0.4) (for data handling) 
